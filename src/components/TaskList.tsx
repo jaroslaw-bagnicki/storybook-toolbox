@@ -1,17 +1,17 @@
 import React from 'react'
 import Task, { TaskActions } from './Task'
-import { TaskModel } from '../models';
+import { TaskModel } from '../models'
 
 type Props = {
-    loading: boolean,
+    isLoading: boolean,
     tasks: TaskModel[],
     actions: TaskActions,
 }
 
-const TaskList: React.FC<Props> = (({ loading, tasks, actions }) => {
+const TaskList: React.FC<Props> = (({ isLoading, tasks, actions }) => {
 
-    if (loading) {
-        return <div className="list-items">loading</div>
+    if (isLoading) {
+        return <div className="list-items">loading ...</div>
     }
 
     if (tasks.length === 0) {
@@ -25,4 +25,4 @@ const TaskList: React.FC<Props> = (({ loading, tasks, actions }) => {
     );
 })
 
-export default TaskList;
+export default TaskList

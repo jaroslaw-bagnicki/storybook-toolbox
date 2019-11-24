@@ -17,6 +17,7 @@ export const actions = {
 }
 
 storiesOf('Task', module)
+    .addDecorator(story => <div style={{ padding: '3rem' }}>{ story() }</div>)
     .add('default', () => <Task task={getTask('TASK_INBOX')} actions={actions} />)
     .add('pinned', () => <Task task={getTask('TASK_PINNED')} actions={actions} />)
     .add('archived', () => <Task task={getTask('TASK_ARCHIVED')} actions={actions} />)
