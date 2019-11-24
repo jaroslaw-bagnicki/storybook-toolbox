@@ -4,11 +4,15 @@ import cls from 'classnames';
 
 type Props = {
     task: TaskModel,
+    actions: TaskActions,
+}
+
+export type TaskActions = {
     onArchiveTask(id: string): void,
     onPinTask(id: string): void,
 }
 
-const Task: React.FunctionComponent<Props> = ({ task: { id, title, state }, onArchiveTask, onPinTask}) => (
+const Task: React.FunctionComponent<Props> = ({ task: { id, title, state }, actions: { onArchiveTask, onPinTask }}) => (
     <div className={cls('list-item', state)}>
         <label className="checkbox">
             <input 

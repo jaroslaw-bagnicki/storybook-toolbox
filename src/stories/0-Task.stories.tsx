@@ -17,6 +17,6 @@ export const actions = {
 }
 
 storiesOf('Task', module)
-    .add('default', () => <Task task={getTask('TASK_INBOX')} {...actions} />)
-    .add('pinned', () => <Task task={getTask('TASK_PINNED')} {...actions} />)
-    .add('archived', () => <Task task={getTask('TASK_ARCHIVED')} {...actions} />)
+    .add('default', () => <Task task={getTask('TASK_INBOX')} actions={actions} />)
+    .add('pinned', () => <Task task={getTask('TASK_PINNED')} actions={actions} />)
+    .add('archived', () => <Task task={getTask('TASK_ARCHIVED')} actions={actions} />)
