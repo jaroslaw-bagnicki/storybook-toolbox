@@ -2,12 +2,7 @@ import React from 'react'
 import { Task, LoadingRow } from '.'
 import { TaskActions } from './Task'
 import { TaskModel } from '../models'
-
-export const taskCompare = (a: TaskModel, b: TaskModel) => {
-    if (a.state === b.state) return 0;
-    if (a.state === 'TASK_PINNED') return -1;
-    return 1;
-}
+import { taskCompare } from '../helpers/taskCompare'
 
 type Props = {
     isLoading: boolean,
@@ -39,11 +34,11 @@ const TaskList: React.FC<Props> = (({ isLoading, tasks, actions }) => {
         </div>)
     }
 
-    const sortedTask = tasks.sort(taskCompare)
+    const sortedTasks = [...tasks].sort(taskCompare)
 
     return (
         <div className="list-items">
-            { tasks.map(task => <Task key={task.id} task={task} actions={actions} />)}
+            { sortedTasks.map(task => <Task key={task.id} task={task} actions={actions} />)}
         </div>
     );
 })
