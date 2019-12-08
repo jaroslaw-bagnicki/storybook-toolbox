@@ -8,7 +8,7 @@ const PIN_TASK = 'PIN_TASK'
 export const archiveTask = (id: string) => action(ARCHIVE_TASK, { id })
 export const pinTask = (id: string) => action(PIN_TASK, { id })
 
-type TaskActions = ActionType<typeof archiveTask | typeof pinTask>
+export type TaskActions = ActionType<typeof archiveTask | typeof pinTask>
 
 export const tasksReducer = (state: TaskModel[] = [], { type, payload }: TaskActions): TaskModel[] => {
     switch (type) {

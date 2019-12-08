@@ -1,16 +1,18 @@
 import React from 'react'
 import { Task, LoadingRow } from '.'
-import { TaskActions } from './Task'
 import { TaskModel } from '../models'
 import { taskCompare } from '../helpers/taskCompare'
+import { connect } from 'react-redux'
+import { TodosState, pinTask, archiveTask, TaskActions } from '../store'
+import { Dispatch } from 'redux'
 
 type Props = {
     isLoading: boolean,
-    tasks: TaskModel[],
-    actions: TaskActions,
 }
 
-const TaskList: React.FC<Props> = (({ isLoading, tasks, actions }) => {
+type AllProps = Props & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+
+const TaskList: React.FC<AllProps> = (({ isLoading, tasks, actions }) => {
 
     if (isLoading) {
         return (
@@ -41,6 +43,21 @@ const TaskList: React.FC<Props> = (({ isLoading, tasks, actions }) => {
             { sortedTasks.map(task => <Task key={task.id} task={task} actions={actions} />)}
         </div>
     );
+});
+
+TaskList.defaultProps = {
+    isLoading: false,
+}
+
+const mapStateToProps = ({ tasks }: TodosState) => ({
+    tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED'),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<TaskActions>) => ({
+    actions: {
+        onPinTask: (id: string) => dispatch(pinTask(id)),
+        onArchiveTask: (id: string) => dispatch(archiveTask(id)),
+    }
 })
 
-export default TaskList
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
