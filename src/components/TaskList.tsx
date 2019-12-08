@@ -12,7 +12,7 @@ type Props = {
 
 type AllProps = Props & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
-const TaskList: React.FC<AllProps> = (({ isLoading, tasks, actions }) => {
+export const PureTaskList: React.FC<AllProps> = (({ isLoading, tasks, actions }) => {
 
     if (isLoading) {
         return (
@@ -45,7 +45,7 @@ const TaskList: React.FC<AllProps> = (({ isLoading, tasks, actions }) => {
     );
 });
 
-TaskList.defaultProps = {
+PureTaskList.defaultProps = {
     isLoading: false,
 }
 
@@ -60,4 +60,6 @@ const mapDispatchToProps = (dispatch: Dispatch<TaskActions>) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+const ConnectedTaskList = connect(mapStateToProps, mapDispatchToProps)(PureTaskList);
+
+export default ConnectedTaskList;

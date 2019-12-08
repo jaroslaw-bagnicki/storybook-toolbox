@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { TaskModel, TaskState } from '../models'
-import { Task, TaskList } from '../components'
+import { Task, PureTaskList as TaskList } from '../components'
 import { actions } from './0-Task.stories'
 
 const taskBase: Pick<TaskModel, 'state'| 'updateAt'> = {
