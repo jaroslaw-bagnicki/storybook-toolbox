@@ -3,7 +3,7 @@ import { TaskList } from '.';
 import { connect } from 'react-redux';
 
 type Props = {
-    error: string,
+    error?: string,
 }
 
 export const InboxScreen: React.FC<Props> = ({ error }) => {
