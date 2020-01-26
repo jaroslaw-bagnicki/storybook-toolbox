@@ -2,6 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import { action, ActionType, StateType } from 'typesafe-actions'
 import { TaskModel } from './models'
 
+ 
 const ARCHIVE_TASK = 'ARCHIVE_TASK'
 const PIN_TASK = 'PIN_TASK'
 
