@@ -1,6 +1,5 @@
 import React from 'react'
 import { Task, LoadingRow } from '.'
-import { TaskModel } from '../models'
 import { taskCompare } from '../helpers/taskCompare'
 import { connect } from 'react-redux'
 import { TodosState, pinTask, archiveTask, TaskActions } from '../store'
@@ -17,6 +16,7 @@ export const PureTaskList: React.FC<AllProps> = (({ isLoading, tasks, actions })
     if (isLoading) {
         return (
             <div className="list-items">
+                <LoadingRow />
                 <LoadingRow />
                 <LoadingRow />
                 <LoadingRow />
